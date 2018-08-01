@@ -2,25 +2,27 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+   const arrProvider = [];
+   const fs = require('fs');
+   const providerData = fs.readFileSync('./employee.csv', 'utf8')
+     .split('\n')
+     .map(data => data.split(','))
+     .forEach(data => {
+       arrProvider.push({
+         name: data[0],
+         jobTitle: data[1],
+         feePerDay: data[2],
+         createdAt: new Date(),
+         updatedAt: new Date()
+       })
+     });
 
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+    return queryInterface.bulkInsert('Providers', arrProvider, {});
+
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
+    return queryInterface.bulkDelete('Providers', null, {});
+     
   }
 };

@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3080;
 const bodyParse = require('body-parser');
 const ejs = require('ejs');
 
-const routerTeacher = require('./router/teacher');
-const routerSubject = require('./router/subject');
+// const routerTeacher = require('./router/teacher');
+// const routerSubject = require('./router/subject');
 
+const port = 3050;
 app.set('view engine', 'ejs');
-
-app.use('/teacher', routerTeacher);
-app.use('/subject', routerSubject);
 app.use(express.static('style'))
+
+// app.use('/teacher', routerTeacher);
+// app.use('/subject', routerSubject);
 
 app.get('/', (req, res) => {
   res.render('index');
