@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Provider Data</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <table class="responsive-table">
+        <caption>Provider Data</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Fullname</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">Fee Per Day</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td colspan="7"><a href="/provider/new" id="regist">New</a></td>
+          </tr>
+        </tfoot>
+        <tbody>
+            <% data.forEach(data => { %>
+              <tr>
+                <td><%= data.id %> </td>
+                <td><%= data.name %> </td>
+                <td><%= data.jobTitle %> </td>
+                <td><%= data.feePerDay %> </td>
+                  <td id="options">
+                    <a href="/provider/edit/<%= data.id %>" id="update">Update</a> 
+                    <a href="/provider/erase/<%= data.id %>" id="delete">Delete</a>
+                  </td>
+                </td>
+              </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+</html>

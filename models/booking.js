@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     groupSize: DataTypes.INTEGER
   }, {});
   Booking.associate = function(models) {
-    // associations can be defined here
+    
   };
   return Booking;
 };
