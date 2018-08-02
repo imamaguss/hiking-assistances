@@ -8,10 +8,9 @@ class ControllerCustomer{
     static index(req, res){
         Customer.findAll({
             order : [['id','ASC']],
-            //include: [models.Provider] 
         })
         .then(customerData => {
-            res.render('customers/customers.ejs', {customerData:customerData})
+            res.render('customer/data', {data:customerData})
         })
     
         .catch(err => {
@@ -19,11 +18,25 @@ class ControllerCustomer{
         })
     }  
 
-    static addGet(req, res){
-        res.render('customers/addCustomer.ejs')
+    static login(req, res) {
+        Customer.findAll()
+            .then(customer => {
+                res.render('customer/login')
+            })
+            .catch(err => {
+                res.send(err);
+            })
     }
 
-    static addPost(req, res){
+    static logout(req, res) {
+        
+    }
+
+    static signUp(req, res){
+        res.render('customer/signup');
+    }
+
+    static signUpPost(req, res){
         Customer.create({
             name: req.body.name,
             email: req.body.email,
@@ -43,7 +56,7 @@ class ControllerCustomer{
         let id = req.params.id
         Customer.findById(id)
         .then(editCustomer =>{
-            res.render("customers/editCustomer.ejs",{editCustomer:editCustomer})
+            res.render("customer/edit",{editCustomer:editCustomer})
         })
         .catch(err => {
             res.send(err)

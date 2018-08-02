@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.navbar li {
+  list-style: none;
+  display: inline-block;
+}
+
 body {
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   color: #5e5d52;

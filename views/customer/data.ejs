@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Customer Data</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <table class="responsive-table" border="1">
+        <caption><h1>Customers Data</h1></caption>
+        <thead>
+            <a href="/customer/add" id="addProvider">Add Customer</a>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Password</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% data.forEach(customer => { %>
+            <tr>
+              <td><%= customer.id %> </td>
+              <td><%= customer.name %> </td>
+              <td><%= customer.email %> </td>
+              <td><%= customer.password %> </td>
+              <td id="options">
+                <a href="/customer/edit/<%= customer.id %>" id="update">Update</a> 
+                <a href="/customer/erase/<%= customer.id %>" id="delete">Delete</a>
+              </td>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

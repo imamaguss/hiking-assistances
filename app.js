@@ -5,15 +5,18 @@ const bodyParse = require('body-parser').urlencoded({extended: true});
 const ejs = require('ejs');
 const model = require('./models');
 const Provider = model.Provider;
-const ProviderRouter = require('./router/provider')
+const ProviderRouter = require('./router/provider');
+const CustomerRouter = require('./router/customer');
 
 app.set('view engine', 'ejs');
-app.use(bodyParse);
 
 app.use('/provider', ProviderRouter);
+app.use('/customer', CustomerRouter);
+app.use(express.static('style'));
+app.use(bodyParse);
 
 app.get('/', (req, res) => {
-  res.send('HIKING ASSISTANCE APP');
+  res.render('index');
 });
 
 app.listen(port, () => {
