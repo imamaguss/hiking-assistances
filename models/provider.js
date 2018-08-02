@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   var Provider = sequelize.define('Provider', {
     name: DataTypes.STRING,
     jobTitle: DataTypes.STRING,
-    feePerDay: DataTypes.INTEGER
+    feePerDay: DataTypes.INTEGER,
+    availability: DataTypes.BOOLEAN, defaultValue: true,
+    password: DataTypes.STRING, defaultValue: null
   }, {});
   Provider.associate = function(models) {
     Provider.belongsToMany(models.Customer, {through: models.Booking, foreignKey: "providerId"});
