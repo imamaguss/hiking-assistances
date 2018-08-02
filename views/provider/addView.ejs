@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>New Provider</title>
+  <script>
+      function changeFeePerDay(){
+        let jobTitle = document.getElementById("jobTitle").value;
+        let feePerDay = document.getElementById("feePerDay").value
+        if(jobTitle === 'porter') {
+          document.getElementById('feePerDay').value = 200000
+        } else {
+          document.getElementById('feePerDay').value = 250000
+        }
+      }
+   
+   </script>
+
+</head>
+<body>
+  <h1>NEW PROVIDER!!</h1>
+  <form action="/provider/add" method="POST">
+    <label for="fullname">Full Name:
+      <input type="text" name="name">
+    </label><br>
+
+    <label for="jobTitle">Job Title:
+      
+      <select name="jobTitle" id="jobTitle" onchange="changeFeePerDay()">
+        <option value="guide">Guide</option>
+        <option value="porter">Porter</option>
+      </select>
+   <br>
+
+    <label for="feePerDay">Fee Per Day:
+    <input type="text" name="feePerDay" readonly id="feePerDay">
+    </label><br>
+
+    <input type="submit" value="Submit" >
+
+  </form>
+  
+</body>
+</html>
