@@ -1,7 +1,7 @@
 const models = require('../models');
 const Provider = models.Provider;
 const Customer = models.Customer;
-const Booking = models.Booking;
+const Booking = models.Booking
 
 class ControllerCustomer{
 
