@@ -18,7 +18,7 @@
         let weightPersonBaseDuration = weightPersonPerDay * packageDuration;
         
         document.getElementById("totalWeight").value = weightPersonBaseDuration * document.getElementById("groupSize").value;
-        document.getElementById("porter").value = Math.floor(document.getElementById("totalWeight").value/20);
+        document.getElementById("porter").value = Math.round(document.getElementById("totalWeight").value/20);
         
         if(document.getElementById("groupSize").value < 8) {
           document.getElementById("guide").value = 1;
@@ -26,14 +26,15 @@
         else if(document.getElementById("groupSize").value < 16) {
           document.getElementById("guide").value = 2;
         }
-
-
+        else if(document.getElementById("groupSize").value < 25) {
+          document.getElementById("guide").value = 3;
+        }
       }
     </script>
   </head>
   <body>
     <h1>LET'S BOOKING</h1>
-    <form action="/booking/" method="POST">
+    <form action="/booking/invoice" method="POST">
       <label for="jobTitle">Duration:
         <select name="packageDuration" id="packageDuration" onchange="totalWeightCalculate()">
           <option value="2">2 Day 1 Night</option>

@@ -37,7 +37,8 @@ class ControllerCustomer{
             }
         })
         .catch(err => {
-            res.send(err);
+            // res.send(err);
+            res.redirect('/')
         })
     }
 
@@ -50,7 +51,7 @@ class ControllerCustomer{
     }
 
     static signUpPost(req, res){
-				Customer.create({
+        Customer.create({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
