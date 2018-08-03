@@ -59,7 +59,7 @@ class ControllerCustomer{
             updateAt: new Date()
         })
         .then(newCustomer => {
-            res.redirect('/customer')
+            res.redirect('/customer/login')
         })
         .catch(err => {
             res.send(err)

@@ -12,21 +12,20 @@ class BookingController {
 
   static findGuide(req, res, next) {
     let guideNeeded = +req.body.guide;
-    console.log(guideNeeded)
-    Provider
-    .findAll({
+    Provider.findAll({
       where: {
         jobTitle: 'guide',
         availability: true
       },
       limit: guideNeeded})
     .then(data => {
-      let employee = 
+      req.locals.guides = []
       data.forEach(guide => {
+        req.locals.guides.push(guid.dataValues.name)
         guide.update({
           availability: false
         })
-        // console.log(guide.dataValues.jobTitle, guide.dataValues.name, );
+        console.log(guide.dataValues.jobTitle, guide.dataValues.name, );
       });
       next();
     })
@@ -35,22 +34,27 @@ class BookingController {
     })
   }
 
-  static findPorter(req, res) {
+  static findPorter(req, res, next) {
     let porterNeeded = +req.body.porter;
-    Provider
-    .findAll({
+    Provider.findAll({
       where: {
         jobTitle: 'porter',
         availability: true
       },
-      limit: porterNeeded})
+      limit: porterNeeded
+    })
     .then(data => {
+      req.locals.porters = []
       data.forEach(porter => {
+
+        req.locals.porters.push(porter.dataValues.name)
+        console.log(porter.dataValues.jobTitle, porter.dataValues.name);
         porter.update({
           availability: false
         })
-        // console.log(porter.dataValues.jobTitle, porter.dataValues.name);
       });
+      console.log("aaaa")
+      next()
     })
     .catch(err => {
       // res.send(err);
@@ -60,8 +64,13 @@ class BookingController {
 
 
   static invoice(req, res) {
-    res.send(req.body)
-    
+    // res.send(req.body)
+    console.log('asdsad')
+    console.log(req.locals)
+    res.send({
+      porters: req.locals.porters,
+      guides: req.locals.guides
+    })
   }
 
 
