@@ -6,26 +6,39 @@ const Booking = models.Booking
 class ControllerCustomer{
 
     static index(req, res){
-        Customer.findAll({
+				Customer.findAll({
             order : [['id','ASC']],
         })
         .then(customerData => {
             res.render('customer/data', {data:customerData})
         })
-    
         .catch(err => {
             res.send(err)
         })
-    }  
+    } 
 
     static login(req, res) {
-        Customer.findAll()
-            .then(customer => {
-                res.render('customer/login')
-            })
-            .catch(err => {
-                res.send(err);
-            })
+        res.render('customer/login')
+    }
+
+    static postLogin(req, res) {
+        let email = req.body.email;
+				let password = req.body.password;
+				Customer
+				.findOne({
+            where: {
+                email: email,
+                password: password
+            }
+        })
+        .then(data => {
+            if(email === data.email) {
+                res.redirect('/booking');
+            }
+        })
+        .catch(err => {
+            res.send(err);
+        })
     }
 
     static logout(req, res) {
@@ -37,7 +50,7 @@ class ControllerCustomer{
     }
 
     static signUpPost(req, res){
-        Customer.create({
+				Customer.create({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
@@ -54,7 +67,7 @@ class ControllerCustomer{
 
     static editGet(req,res) {
         let id = req.params.id
-        Customer.findById(id)
+				Customer.findById(id)
         .then(editCustomer =>{
             res.render("customer/edit",{editCustomer:editCustomer})
         })
@@ -64,7 +77,7 @@ class ControllerCustomer{
     }
 
     static editPost(req,res) {
-        Customer.update({
+				Customer.update({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
@@ -83,7 +96,7 @@ class ControllerCustomer{
 
     static delete(req,res) {
         let id = req.params.id
-        Customer.destroy({
+				Customer.destroy({
             where:{id : id}
         })
         .then(()=>{
